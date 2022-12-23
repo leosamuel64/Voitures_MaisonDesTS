@@ -12,6 +12,7 @@
     <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css"
         rel="stylesheet" />
     <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.21.1/dist/bootstrap-table.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -67,7 +68,7 @@
         </form>
 
         <div class="content mt-3">
-            <h1>Calcul pour le mois de {{session['calc_m']}} </h1>
+            <h3>Calcul pour le mois de {{session['calc_m']}} </h3>
             <table class="table">
                 <thead>
                     <th>Voiture</th>
@@ -83,9 +84,9 @@
                         <td>{{session['C3']}}</td>
                     </tr>
                     <td>Coût</td>
-                    <td>{{session['Clio']*0.60*2}} €</td>
-                    <td>{{session['208']*0.82*2}} €</td>
-                    <td>{{session['C3']*0.82*2}} €</td>
+                    <td>{{session['ct_Clio']}} €</td>
+                    <td>{{session['ct_208']}} €</td>
+                    <td>{{session['ct_C3']}} €</td>
                     <tr>
 
 
@@ -93,6 +94,34 @@
 
                 </tbody>
             </table>
+
+            <h3>Calcul pour le mois en cours </h3>
+            <table class="table">
+                <thead>
+                    <th>Voiture</th>
+                    <th>Clio</th>
+                    <th>208</th>
+                    <th>C3</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Nombre d'AR</td>
+                        <td>{{session['Clio_c']}}</td>
+                        <td>{{session['208_c']}}</td>
+                        <td>{{session['C3_c']}}</td>
+                    </tr>
+                    <td>Coût</td>
+                    <td>{{session['ct_Clio_c']}} €</td>
+                    <td>{{session['ct_208_c']}} €</td>
+                    <td>{{session['ct_C3_c']}} €</td>
+                    <tr>
+
+
+                    </tr>
+
+                </tbody>
+            </table>
+
 
 
 
@@ -112,7 +141,7 @@
                         <tbody>
                             {%for (id,nom,equipe) in listeMembres%}
                             <tr>
-                                <td> <a href="/suppMembre/{{id}}">X</a></td>
+                                <td> <a href="/suppMembre/{{id}}"><i class="fa-solid fa-trash"></i></a></td>
                                 <td>{{id}}</td>
                                 <td class='modif' data-url='/updateMembre' data-pk='{idUser:{{id}}, champ:"nom"}'>
                                     {{nom }}</td>
@@ -184,7 +213,7 @@
         src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/libs/jsPDFAutoTable/jspdf.plugin.autotable.js"></script>
     <script
         src="https://unpkg.com/bootstrap-table@1.19.0/dist/extensions/export/bootstrap-table-export.min.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/js/all.min.js" integrity="sha512-rpLlll167T5LJHwp0waJCh3ZRf7pO6IT1+LZOhAyP6phAirwchClbTZV3iqL3BMrVxIYRbzGTpli4rfxsCK6Vw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
 </body>

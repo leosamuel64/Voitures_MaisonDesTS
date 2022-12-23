@@ -4,8 +4,8 @@ SEND_FILE_MAX_AGE_DEFAULT = 0
 SECRET_KEY="jkqskdhvbjsd"
 
 WEB_SERVER={
-    "host": "localhost",
-    "port": 8080
+    "host": "0.0.0.0",
+    "port": 50
 }
 
 
