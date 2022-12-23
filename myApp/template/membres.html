@@ -1,0 +1,192 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<head>
+    {%set titre="Membres"%}
+    {% include("layout/head.html")%}
+    <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.21.1/dist/bootstrap-table.min.css">
+</head>
+
+<body>
+
+
+
+    <!-- Left Panel -->
+
+
+    <!-- Left Panel -->
+
+    <!-- Right Panel -->
+
+    <div id="right-panel" class="right-panel">
+
+        <!-- Header-->
+
+
+
+
+        <!-- Header-->
+
+        <div class="breadcrumbs">
+            <div class="col-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1>Utilisation des voitures</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="page-header float-right">
+                    <div class="page-title">
+                        <ol class="breadcrumb text-right">
+                            <li class="active"></li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+        <form method="post" action="/addMembre">
+            <label for="Voiture"></label>
+            <select class="form-control" name="Voiture" id="Voiture">
+
+                <option value=1>Clio</option>
+                <option value=2>208</option>
+                <option value=3>C3</option>
+            </select>
+            <div>
+                <button type="submit" class="form-control">Ajouter</button>
+            </div>
+        </form>
+
+        <div class="content mt-3">
+            <h1>Calcul pour le mois de {{session['calc_m']}} </h1>
+            <table class="table">
+                <thead>
+                    <th>Voiture</th>
+                    <th>Clio</th>
+                    <th>208</th>
+                    <th>C3</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Nombre d'AR</td>
+                        <td>{{session['Clio']}}</td>
+                        <td>{{session['208']}}</td>
+                        <td>{{session['C3']}}</td>
+                    </tr>
+                    <td>Coût</td>
+                    <td>{{session['Clio']*0.60*2}} €</td>
+                    <td>{{session['208']*0.82*2}} €</td>
+                    <td>{{session['C3']*0.82*2}} €</td>
+                    <tr>
+
+
+                    </tr>
+
+                </tbody>
+            </table>
+
+
+
+            
+                    <table class="table" data-toggle="table" data-search="true" data-pagination="true"
+                        data-page-size="8" data-page-list="[10, 25, 50, all]" data-show-export="true"
+                        data-export-types="['excel', 'xlsx', 'pdf','json', 'csv', 'txt', 'sql', 'doc']">
+                        <thead>
+                            <tr>
+                                <th data-field="supp" data-align="center" data-force-hide="true">Supp</th>
+                                <th data-field="id" data-sortable="true">#</th>
+                                <th data-field="voiture" data-sortable="true">voiture</th>
+                                <th data-field="date" data-sortable="true">date</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {%for (id,nom,equipe) in listeMembres%}
+                            <tr>
+                                <td> <a href="/suppMembre/{{id}}">X</a></td>
+                                <td>{{id}}</td>
+                                <td class='modif' data-url='/updateMembre' data-pk='{idUser:{{id}}, champ:"nom"}'>
+                                    {{nom }}</td>
+
+                                <td class='modifSelect' data-url='/updateMembre'
+                                    data-pk='{idUser:{{id}}, champ:"idEquipe"}'>
+                                    {{ equipe }}</td>
+
+
+                            </tr>
+                            {%endfor%}
+                        </tbody>
+                    </table>
+                
+                
+                
+                    <form method="post" action="/addMembre">
+                        <label for="Voiture"></label>
+                        <select name="Voiture" id="Voiture">
+
+                            <option value=1>Clio</option>
+                            <option value=2>208</option>
+                            <option value=3>C3</option>
+                        </select>
+                        <div>
+                            <button type="submit">Ajouter</button>
+                        </div>
+                    </form>
+                
+            </div>
+
+            
+
+
+        </div> <!-- .content -->
+    </div><!-- /#right-panel -->
+
+    <!-- Right Panel -->
+
+    {% include("layout/scripts.html")%}
+    <script
+        src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
+    <script>
+        const $ = jQuery.noConflict()
+        $(function () {
+            $.fn.editable.defaults.mode = 'inline'
+            $(".modif").editable()
+            $(".modifSelect").editable({
+                type: 'select',
+                source: [
+                    { value: 1, text: '1' },
+                    { value: 2, text: '2' },
+                    { value: 3, text: '3' },
+                    { value: 4, text: '4' },
+                    { value: 5, text: '5' },
+                    { value: 6, text: '6' }
+                ]
+            })
+        })
+    </script>
+    <script src="https://unpkg.com/bootstrap-table@1.21.1/dist/bootstrap-table.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.19.0/dist/bootstrap-table.min.js"></script>
+    <script
+        src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrapeditable.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/libs/js-xlsx/xlsx.core.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/tableExport.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/libs/jsPDF/jspdf.min.js"></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/libs/jsPDFAutoTable/jspdf.plugin.autotable.js"></script>
+    <script
+        src="https://unpkg.com/bootstrap-table@1.19.0/dist/extensions/export/bootstrap-table-export.min.js"></script>
+
+
+
+</body>
+
+</html>
