@@ -5,7 +5,7 @@ SECRET_KEY="jkqskdhvbjsd"
 
 WEB_SERVER={
     "host": "0.0.0.0",
-    "port": 80
+    "port": 8080
 }
 
 
